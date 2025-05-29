@@ -6,6 +6,10 @@ on:
       image_name:
         required: true
         type: string
+      image_tag:
+        required: false
+        default: latest
+        type: string
       dockerfile_path:
         required: false
         default: ./Dockerfile
@@ -40,4 +44,4 @@ jobs:
           context: ${{ inputs.context }}
           file: ${{ inputs.dockerfile_path }}
           push: true
-          tags: ${{ inputs.image_name }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ inputs.image_name }}
